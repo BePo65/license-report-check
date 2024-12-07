@@ -1,0 +1,83 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Mocha All Files",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/test",
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ]
+    },
+    {
+      "name": "Mocha Current File",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "args": [
+          "--timeout",
+          "999999",
+          "--colors",
+          "${file}"
+      ],
+      "skipFiles": [
+          "<node_internals>/**/*.js"
+      ]
+    },
+    {
+      "name": "Launch Program",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json"
+      ]
+    },
+    {
+      "name": "Launch Program 2",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json",
+        "--forbidden",
+        "Apache-2.0"
+      ]
+    },
+    {
+      "name": "Launch Program 3",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json",
+        "--allowed",
+        "MIT",
+        "--forbidden",
+        "Apache-2.0"
+      ]
+    }
+  ]
+}
