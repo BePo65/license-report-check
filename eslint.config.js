@@ -8,8 +8,7 @@ import pluginPreferArrow from 'eslint-plugin-prefer-arrow';
 import pluginChaiExpect from 'eslint-plugin-chai-expect';
 import pluginSecurity from 'eslint-plugin-security';
 import pluginSecurityNode from 'eslint-plugin-security-node';
-// TODO wait for eslint-plugin-import to be usable in eslint v9; corresponding
-// issue see https://github.com/import-js/eslint-plugin-import/issues/2948
+import pluginImport from 'eslint-plugin-import';
 
 export default [
   {
@@ -21,9 +20,11 @@ export default [
   pluginNode.configs['flat/recommended-module'],
   pluginChaiExpect.configs['recommended-flat'],
   pluginSecurity.configs.recommended,
+  pluginImport.flatConfigs.recommended,
   {
     files: ['**/*.js'],
     languageOptions: {
+      ecmaVersion: 2021,
       globals: {
         ...globals.nodeBuiltin,
         ...globals.mocha,
