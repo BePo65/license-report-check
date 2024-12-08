@@ -78,6 +78,60 @@
         "--forbidden",
         "Apache-2.0"
       ]
+    },
+    {
+      "name": "Launch Program 4",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json",
+        "--allowed",
+        "MIT",
+        "--output",
+        "csv"
+      ]
+    },
+    {
+      "name": "Launch Program 5",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json",
+        "--allowed",
+        "MIT",
+        "--output",
+        "csv",
+        "--csvHeaders"
+      ]
+    },
+    {
+      "name": "Launch Program 6",
+      "type": "node",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ],
+      "program": "${workspaceFolder}\\index.js",
+      "args": [
+        "--source",
+        "${workspaceFolder}/test/fixture/test-package.json",
+        "--allowed",
+        "MIT",
+        "--forbidden",
+        "Apache-2.0",
+        "--output",
+        "table"
+      ]
     }
   ]
 }
