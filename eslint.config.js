@@ -46,6 +46,7 @@ export default [
         },
       ],
       ...pluginSecurityNode.configs.recommended.rules,
+      'security/detect-object-injection': 'off',
       // disable redundant check (already exists as security/detect-possible-timing-attacks)
       'security-node/detect-possible-timing-attacks': 'off',
     },
