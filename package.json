@@ -37,6 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^4.3.7",
+    "easy-table": "^1.2.0",
     "jsonfile": "^6.1.0",
     "rc": "^1.2.8",
     "stream-json": "^1.9.1"

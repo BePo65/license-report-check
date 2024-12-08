@@ -86,6 +86,26 @@ license-report-check --forbidden=ISC --forbidden=BSD-3-Clause
 
 If packages with a 'forbidden' license appear in the input list, these are reported via the 'forbidden' field of the output.
 
+### Format the output as csv
+
+```
+  license-report-check --output=csv
+```
+
+Using the 'csv' output format, the resulting data can be modified with these parameters:
+
+Add a header row to the csv output:
+
+```
+  license-report-check --csvHeaders
+```
+
+Change the delimiter used in the csv output (defaults to ','):
+
+```
+  license-report-check --delimiter="|"
+```
+
 ### Use a custom (partial) config file
 
 If multiple 'allowed' or 'forbidden' arguments are needed, the best way is to use a custom config file, that contains a 'allowed' and/or 'forbidden' array.
