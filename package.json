@@ -21,7 +21,7 @@
   },
   "bugs": "https://github.com/BePo65/license-report-check/issues",
   "scripts": {
-    "lint": "npx eslint index.js lib/**/*.js **/*.json",
+    "lint": "npx eslint index.js lib/**/*.js test/**/*.js **/*.json",
     "test": "npx mocha -R spec",
     "lint-commits": "commitlint --from e86b01e0b9f467 --to HEAD --verbose",
     "init-changelog": "commit-and-tag-version -i CHANGELOG.md --same-file --prerelease pre --first-release",
