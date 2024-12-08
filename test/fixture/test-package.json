@@ -19,7 +19,6 @@
   },
   {
     "name": "eol",
-    "licenseType": "MIT",
     "link": "git+https://github.com/ryanve/eol.git",
     "remoteVersion": "0.10.0",
     "installedVersion": "0.10.0",
