@@ -29,6 +29,7 @@ npm-debug.log
 testem.log
 /typings
 /.nyc_output
+TODO.txt
 
 # System Files
 .DS_Store
