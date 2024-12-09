@@ -21,7 +21,8 @@ describe('util-stream ', () => {
     });
   });
 
-  describe('CheckLicenseTypeTransform', () => {
+  describe('CheckLicenseTypeTransform', function () {
+    this.slow(900);
     let sourceData;
 
     before(async () => {
