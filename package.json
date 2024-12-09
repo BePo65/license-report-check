@@ -62,7 +62,8 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.2.10",
     "mocha": "^11.0.1",
-    "prettier": "^3.4.1"
+    "prettier": "^3.4.1",
+    "streamtest": "^3.0.1"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
