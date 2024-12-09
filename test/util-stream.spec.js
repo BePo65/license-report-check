@@ -2,12 +2,16 @@ import assert from 'node:assert';
 import { readFile } from 'node:fs/promises';
 import { pipeline } from 'node:stream/promises';
 
+import { stub } from 'sinon';
 import StreamTest from 'streamtest';
+
+import config from '../lib/config.js';
+import { getFormatter } from '../lib/formatter.js';
 
 import {
   CheckLicenseTypeTransform,
   // createJsonReadable,
-  // FormatterWritable,
+  FormatterWritable,
 } from '../lib/util-stream.js';
 
 describe('util-stream ', () => {
@@ -45,18 +49,87 @@ describe('util-stream ', () => {
 
       assert(Array.isArray(result));
       assert.equal(result.length, 1);
-      assert.deepStrictEqual(result[0], expectedResultClassification);
+      assert.deepStrictEqual(result[0], EXPECTED_RESULT_CLASSIFICATION);
     });
   });
 
   describe('FormatterWritable', () => {
-    it('creates a writable with formatter', () => {
-      // TODO add test here
+    let testConfig;
+
+    beforeEach(() => {
+      testConfig = structuredClone(config);
+    });
+
+    it('creates a writable with json formatter', async () => {
+      const consoleStub = stub(console, 'log');
+      testConfig.output = 'json';
+      const outputFormatter = getFormatter(testConfig.output);
+
+      const resultPromise = new Promise((resolve, reject) => {
+        StreamTest.fromObjects([EXPECTED_RESULT_CLASSIFICATION])
+          .pipe(new FormatterWritable(outputFormatter, testConfig))
+          .on('finish', resolve)
+          .on('error', reject);
+      });
+
+      await resultPromise;
+      const expectedResult = JSON.stringify(EXPECTED_RESULT_CLASSIFICATION);
+
+      assert(consoleStub.calledOnce);
+      assert.deepStrictEqual(consoleStub.firstCall.firstArg, expectedResult);
+
+      consoleStub.restore();
+    });
+
+    it('creates a writable with csv formatter', async () => {
+      const consoleStub = stub(console, 'log');
+      testConfig.output = 'csv';
+      const outputFormatter = getFormatter(testConfig.output);
+
+      const resultPromise = new Promise((resolve, reject) => {
+        StreamTest.fromObjects([EXPECTED_RESULT_CLASSIFICATION])
+          .pipe(new FormatterWritable(outputFormatter, testConfig))
+          .on('finish', resolve)
+          .on('error', reject);
+      });
+
+      await resultPromise;
+
+      assert(consoleStub.calledOnce);
+      assert.deepStrictEqual(
+        consoleStub.firstCall.firstArg,
+        EXPECTED_RESULT_CSV_FORMATTER,
+      );
+
+      consoleStub.restore();
+    });
+
+    it('creates a writable with table formatter', async () => {
+      const consoleStub = stub(console, 'log');
+      testConfig.output = 'table';
+      const outputFormatter = getFormatter(testConfig.output);
+
+      const resultPromise = new Promise((resolve, reject) => {
+        StreamTest.fromObjects([EXPECTED_RESULT_CLASSIFICATION])
+          .pipe(new FormatterWritable(outputFormatter, testConfig))
+          .on('finish', resolve)
+          .on('error', reject);
+      });
+
+      await resultPromise;
+
+      assert(consoleStub.calledOnce);
+      assert.deepStrictEqual(
+        consoleStub.firstCall.firstArg,
+        EXPECTED_RESULT_TABLE_FORMATTER,
+      );
+
+      consoleStub.restore();
     });
   });
 });
 
-const expectedResultClassification = {
+const EXPECTED_RESULT_CLASSIFICATION = {
   notAllowed: [
     {
       name: 'eol',
@@ -142,3 +215,26 @@ const expectedResultClassification = {
     },
   ],
 };
+
+const EXPECTED_RESULT_CSV_FORMATTER = `eol,,not allowed
+semver,ISC,not allowed
+commit-and-tag-version,ISC,not allowed
+eslint-plugin-jsdoc,BSD-3-Clause,not allowed
+eslint-plugin-security,Apache-2.0,not allowed
+eslint-plugin-security-node,ISC,not allowed
+eol,,forbidden
+eslint-plugin-security,Apache-2.0,forbidden
+eol,,unknown`;
+
+const EXPECTED_RESULT_TABLE_FORMATTER = `name                         licenseType   classification
+---------------------------  ------------  --------------
+eol                                        not allowed   
+semver                       ISC           not allowed   
+commit-and-tag-version       ISC           not allowed   
+eslint-plugin-jsdoc          BSD-3-Clause  not allowed   
+eslint-plugin-security       Apache-2.0    not allowed   
+eslint-plugin-security-node  ISC           not allowed   
+eol                                        forbidden     
+eslint-plugin-security       Apache-2.0    forbidden     
+eol                                        unknown       
+`;
