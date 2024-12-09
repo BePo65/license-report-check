@@ -1,4 +1,6 @@
 import assert from 'node:assert';
+import process from 'node:process';
+import fs from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { pipeline } from 'node:stream/promises';
 
@@ -10,14 +12,43 @@ import { getFormatter } from '../lib/formatter.js';
 
 import {
   CheckLicenseTypeTransform,
-  // createJsonReadable,
+  createJsonReadable,
   FormatterWritable,
 } from '../lib/util-stream.js';
 
 describe('util-stream ', () => {
   describe('createJsonReadable', () => {
+    it('creates a readable from stdin', () => {
+      const readable = createJsonReadable();
+
+      assert.equal(readable, process.stdin);
+    });
+
     it('creates a readable from a file', () => {
-      // TODO add test here
+      const createReadStreamStub = stub(fs, 'createReadStream');
+      createJsonReadable('./test/fixture/test-package.json');
+
+      assert(createReadStreamStub.calledOnce);
+
+      createReadStreamStub.restore();
+    });
+
+    it('throw when creating a readable from a non existing file', () => {
+      const createReadStreamStub = stub(fs, 'createReadStream');
+
+      assert.throws(
+        () => {
+          createJsonReadable('path/to/output/of/license-report.json');
+        },
+        (err) => {
+          assert(err instanceof Error);
+          assert(/Source file .+license-report\.json does not exist/.test(err));
+          return true;
+        },
+        'unexpected error',
+      );
+
+      createReadStreamStub.restore();
     });
   });
 
