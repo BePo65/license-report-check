@@ -129,6 +129,7 @@ describe('util-stream ', () => {
   });
 });
 
+// cSpell:disable
 const EXPECTED_RESULT_CLASSIFICATION = {
   notAllowed: [
     {
@@ -215,6 +216,7 @@ const EXPECTED_RESULT_CLASSIFICATION = {
     },
   ],
 };
+// cSpell:enable
 
 const EXPECTED_RESULT_CSV_FORMATTER = `eol,,not allowed
 semver,ISC,not allowed

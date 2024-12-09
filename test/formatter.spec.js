@@ -94,6 +94,7 @@ describe('getFormatter', () => {
   });
 });
 
+// cSpell:disable
 const testData = {
   notAllowed: [
     {
@@ -269,6 +270,7 @@ const testDataWithCsvDelimiter = {
 
 const EXPECTED_JSON_RESULT =
   '{"notAllowed":[{"name":"eol","link":"git+https://github.com/ryanve/eol.git","remoteVersion":"0.10.0","installedVersion":"0.10.0","definedVersion":"^0.10.0","author":"Ryan Van Etten"},{"name":"semver","licenseType":"ISC","link":"git+https://github.com/npm/node-semver.git","remoteVersion":"7.6.3","installedVersion":"7.6.3","definedVersion":"^7.6.3","author":"GitHub Inc."},{"name":"commit-and-tag-version","licenseType":"ISC","link":"git+https://github.com/absolute-version/commit-and-tag-version.git","remoteVersion":"12.5.0","installedVersion":"12.5.0","definedVersion":"^12.5.0","author":"Ben Coe <ben@npmjs.com>"},{"name":"eslint-plugin-jsdoc","licenseType":"BSD-3-Clause","link":"git+https://github.com/gajus/eslint-plugin-jsdoc.git","remoteVersion":"50.6.0","installedVersion":"50.6.0","definedVersion":"^50.6.0","author":"Gajus Kuizinas gajus@gajus.com http://gajus.com"},{"name":"eslint-plugin-security","licenseType":"Apache-2.0","link":"git+https://github.com/eslint-community/eslint-plugin-security.git","remoteVersion":"3.0.1","installedVersion":"3.0.1","definedVersion":"^3.0.1","author":"Node Security Project"},{"name":"eslint-plugin-security-node","licenseType":"ISC","link":"git+https://github.com/gkouziik/eslint-plugin-security-node.git","remoteVersion":"1.1.4","installedVersion":"1.1.4","definedVersion":"^1.1.4","author":"gkouziik"}],"forbidden":[{"name":"eol","link":"git+https://github.com/ryanve/eol.git","remoteVersion":"0.10.0","installedVersion":"0.10.0","definedVersion":"^0.10.0","author":"Ryan Van Etten"},{"name":"eslint-plugin-security","licenseType":"Apache-2.0","link":"git+https://github.com/eslint-community/eslint-plugin-security.git","remoteVersion":"3.0.1","installedVersion":"3.0.1","definedVersion":"^3.0.1","author":"Node Security Project"}],"unknown":[{"name":"eol","link":"git+https://github.com/ryanve/eol.git","remoteVersion":"0.10.0","installedVersion":"0.10.0","definedVersion":"^0.10.0","author":"Ryan Van Etten"}]}';
+// cSpell:enable
 
 const EXPECTED_CSV_HEADER = 'name,licenseType,classification';
 
