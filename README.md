@@ -123,6 +123,10 @@ If multiple 'allowed' or 'forbidden' arguments are needed, the best way is to us
 }
 ```
 
+## Notes on used dependencies
+
+`eslint-plugin-security-node` is installed to be informed about updates, but disabled as it throws in 'util-stream.spec.js' line 101 with `TypeError: Cannot read properties of undefined (reading 'loc')`. An [issue #84](https://github.com/gkouziik/eslint-plugin-security-node/issues/84) was opened.
+
 ## Development
 
 This repo uses standard-changelog to create the CHANGELOG. To ensure that the commit messages follow the standard-changelog rules, husky is used for git hooks.

@@ -15,7 +15,7 @@ import {
 
 (async () => {
   if (config.help) {
-    console.log(helpText); // eslint-disable-line security-node/detect-crlf
+    console.log(helpText);
     return;
   }
 

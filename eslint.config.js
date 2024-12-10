@@ -7,7 +7,7 @@ import pluginNode from 'eslint-plugin-n';
 import pluginPreferArrow from 'eslint-plugin-prefer-arrow';
 import pluginChaiExpect from 'eslint-plugin-chai-expect';
 import pluginSecurity from 'eslint-plugin-security';
-import pluginSecurityNode from 'eslint-plugin-security-node';
+// HACK as it throws import pluginSecurityNode from 'eslint-plugin-security-node';
 import pluginImport from 'eslint-plugin-import';
 
 export default [
@@ -32,7 +32,7 @@ export default [
     },
     plugins: {
       preferArrow: pluginPreferArrow,
-      'security-node': pluginSecurityNode,
+      // HACK as it throws 'security-node': pluginSecurityNode,
     },
     rules: {
       'mocha/no-mocha-arrows': 'off',
@@ -45,10 +45,10 @@ export default [
           classPropertiesAllowed: false,
         },
       ],
-      ...pluginSecurityNode.configs.recommended.rules,
       'security/detect-object-injection': 'off',
+      // HACK as it throws ...pluginSecurityNode.configs.recommended.rules,
       // disable redundant check (already exists as security/detect-possible-timing-attacks)
-      'security-node/detect-possible-timing-attacks': 'off',
+      // HACK as it throws 'security-node/detect-possible-timing-attacks': 'off',
     },
   },
   {
