@@ -123,20 +123,6 @@ If multiple 'allowed' or 'forbidden' arguments are needed, the best way is to us
 }
 ```
 
-## Show debug log
-
-Use in linux shell
-
-```sh
-export DEBUG=license-report-check
-```
-
-or in windows command line
-
-```sh
-SET DEBUG=license-report-check
-```
-
 ## Development
 
 This repo uses standard-changelog to create the CHANGELOG. To ensure that the commit messages follow the standard-changelog rules, husky is used for git hooks.

@@ -36,11 +36,8 @@
   "author": "BePo65",
   "license": "MIT",
   "dependencies": {
-    "debug": "^4.3.7",
     "easy-table": "^1.2.0",
-    "jsonfile": "^6.1.0",
     "rc": "^1.2.8",
-    "sinon": "^19.0.2",
     "stream-json": "^1.9.1"
   },
   "devDependencies": {
@@ -64,6 +61,7 @@
     "lint-staged": "^15.2.10",
     "mocha": "^11.0.1",
     "prettier": "^3.4.1",
+    "sinon": "^19.0.2",
     "streamtest": "^3.0.1"
   },
   "lint-staged": {
