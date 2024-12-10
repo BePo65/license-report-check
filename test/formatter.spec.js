@@ -1,5 +1,7 @@
 import assert from 'node:assert';
 
+import { stub } from 'sinon';
+
 import config from '../lib/config.js';
 import { getFormatter } from '../lib/formatter.js';
 
@@ -45,20 +47,44 @@ describe('getFormatter', () => {
     });
 
     it('produces a report for data with delimiter in field value', () => {
+      const consoleStub = stub(console, 'warn');
       testConfig.delimiter = '-';
       const csvFormatter = getFormatter('csv');
       const csvResult = csvFormatter(testDataWithCsvDelimiter, testConfig);
 
       assert.strictEqual(csvResult, EXPECTED_CSV_RESULT_WITH_DELIMITER);
+      assert.equal(consoleStub.callCount, 8);
+      assert.deepStrictEqual(
+        consoleStub.firstCall.firstArg,
+        'Warning: field contains delimiter; value: "commit-and-tag-version"',
+      );
+      assert.deepStrictEqual(
+        consoleStub.lastCall.firstArg,
+        'Warning: field contains delimiter; value: "Apache-2.0"',
+      );
+
+      consoleStub.restore();
     });
 
     it('produces a report for data with delimiter in field value - escaped', () => {
+      const consoleStub = stub(console, 'warn');
       testConfig.delimiter = '-';
       testConfig.escapeCsvFields = true;
       const csvFormatter = getFormatter('csv');
       const csvResult = csvFormatter(testDataWithCsvDelimiter, testConfig);
 
       assert.strictEqual(csvResult, EXPECTED_CSV_RESULT_WITH_DELIMITER_ESCAPED);
+      assert.equal(consoleStub.callCount, 8);
+      assert.deepStrictEqual(
+        consoleStub.firstCall.firstArg,
+        'Warning: field contains delimiter; value: "commit-and-tag-version"',
+      );
+      assert.deepStrictEqual(
+        consoleStub.lastCall.firstArg,
+        'Warning: field contains delimiter; value: "Apache-2.0"',
+      );
+
+      consoleStub.restore();
     });
 
     it('produces a report for an empty data array', () => {
@@ -91,6 +117,7 @@ describe('getFormatter', () => {
 
       assert.strictEqual(tableResult, EXPECTED_TABLE_RESULT_EMPTY_DATA);
     });
+    // TODO use different outputClassifications
   });
 });
 
