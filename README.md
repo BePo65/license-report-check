@@ -1,6 +1,6 @@
 # license-report-check - an add-on to license-report tool
 
-![Version](https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000)
+![Version](https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
 > Check the types of the licenses of the dependencies of a project based on the json report from the package 'license-report'.
