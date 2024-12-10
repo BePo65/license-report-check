@@ -104,6 +104,12 @@ describe('getFormatter', () => {
   });
 
   describe('formatter for table', () => {
+    let testConfig;
+
+    beforeEach(() => {
+      testConfig = structuredClone(config);
+    });
+
     it('produces a report', () => {
       const tableFormatter = getFormatter('table');
       const tableResult = tableFormatter(testData, config);
@@ -117,7 +123,29 @@ describe('getFormatter', () => {
 
       assert.strictEqual(tableResult, EXPECTED_TABLE_RESULT_EMPTY_DATA);
     });
-    // TODO use different outputClassifications
+
+    it('produces a report with different classifications', () => {
+      testConfig.outputClassifications.notAllowed = 'n.a.';
+      testConfig.outputClassifications.forbidden = 'f';
+      testConfig.outputClassifications.unknown = 'u';
+
+      const tableFormatter = getFormatter('table');
+      const tableResult = tableFormatter(testData, testConfig);
+
+      assert.strictEqual(tableResult, EXPECTED_TABLE_RESULT_CLASSIFICATIONS);
+    });
+
+    it('produces a report with different columns', () => {
+      testConfig.outputColumns.name = 'Package';
+      testConfig.outputColumns.licenseType = 'License Type';
+      testConfig.outputColumns.installedVersion = 'Installed Version';
+      testConfig.outputColumns.classification = 'Classification';
+
+      const tableFormatter = getFormatter('table');
+      const tableResult = tableFormatter(testData, testConfig);
+
+      assert.strictEqual(tableResult, EXPECTED_TABLE_RESULT_COLUMNS);
+    });
   });
 });
 
@@ -342,6 +370,32 @@ eslint-plugin-security-node  ISC           not allowed
 eol                                        forbidden     
 eslint-plugin-security       Apache-2.0    forbidden     
 eol                                        unknown       
+`;
+
+const EXPECTED_TABLE_RESULT_CLASSIFICATIONS = `name                         licenseType   classification
+---------------------------  ------------  --------------
+eol                                        n.a.          
+semver                       ISC           n.a.          
+commit-and-tag-version       ISC           n.a.          
+eslint-plugin-jsdoc          BSD-3-Clause  n.a.          
+eslint-plugin-security       Apache-2.0    n.a.          
+eslint-plugin-security-node  ISC           n.a.          
+eol                                        f             
+eslint-plugin-security       Apache-2.0    f             
+eol                                        u             
+`;
+
+const EXPECTED_TABLE_RESULT_COLUMNS = `Package                      License Type  Classification  Installed Version
+---------------------------  ------------  --------------  -----------------
+eol                                        not allowed     0.10.0           
+semver                       ISC           not allowed     7.6.3            
+commit-and-tag-version       ISC           not allowed     12.5.0           
+eslint-plugin-jsdoc          BSD-3-Clause  not allowed     50.6.0           
+eslint-plugin-security       Apache-2.0    not allowed     3.0.1            
+eslint-plugin-security-node  ISC           not allowed     1.1.4            
+eol                                        forbidden       0.10.0           
+eslint-plugin-security       Apache-2.0    forbidden       3.0.1            
+eol                                        unknown         0.10.0           
 `;
 
 const EXPECTED_TABLE_RESULT_EMPTY_DATA = '\n\n';
