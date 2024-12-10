@@ -34,5 +34,3 @@ import {
     process.exit(1); // eslint-disable-line n/no-process-exit
   }
 })();
-
-// TODO add tests
