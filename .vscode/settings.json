@@ -10,6 +10,6 @@
     ".git/{info,lfs,logs,refs,objects}/**",
     ".git/{index,*refs,*HEAD}",
     ".vscode",
-    "test/fixture/test-package.json"
+    "test/fixture/package.*.test.json"
   ]
 }

@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#)
 
-> Check the types of the licenses of the dependencies of a project based on the json report from the package 'license-report'.
+> Validate the types of the licenses of the dependencies of a project based on the json report from the package 'license-report'.
 
 Using configuration parameters the license types of the dependencies are classified as 'notAllowed', 'forbidden' or 'unknown' (i.e. without license type).
 
@@ -24,6 +24,16 @@ License types can also be several license types connected with 'OR' and surround
 ```
 (BSD-2-Clause OR MIT OR Apache-2.0)
 ```
+
+The exit code of 'license-report-check' reflects the results:
+
+- 0 = no error found
+- 1 = error while evaluating the result
+- 2 = found at least 1 not allowed license
+- 4 = found at least 1 forbidden license
+- 8 = found at least 1 license without a license type
+
+The error codes can be combined (OR function) except for exitCode 1.
 
 ### Using piping
 

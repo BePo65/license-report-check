@@ -26,7 +26,7 @@ describe('util-stream ', () => {
 
     it('creates a readable from a file', () => {
       const createReadStreamStub = stub(fs, 'createReadStream');
-      createJsonReadable('./test/fixture/test-package.json');
+      createJsonReadable('./test/fixture/package.unknown.test.json');
 
       assert(createReadStreamStub.calledOnce);
 
@@ -59,7 +59,10 @@ describe('util-stream ', () => {
     before(async () => {
       sourceData = JSON.parse(
         await readFile(
-          new URL('../fixture/test-package.json', `${import.meta.url}/test`),
+          new URL(
+            '../fixture/package.unknown.test.json',
+            `${import.meta.url}/test`,
+          ),
         ),
       ).map((element, index) => {
         return { key: index.toString(), value: element };

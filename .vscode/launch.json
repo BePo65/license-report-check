@@ -44,7 +44,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json"
+        "${workspaceFolder}/test/fixture/package.unknown.test.json"
       ]
     },
     {
@@ -57,7 +57,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json",
+        "${workspaceFolder}/test/fixture/package.unknown.test.json",
         "--forbidden",
         "Apache-2.0"
       ]
@@ -72,7 +72,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json",
+        "${workspaceFolder}/test/fixture/package.unknown.test.json",
         "--allowed",
         "MIT",
         "--forbidden",
@@ -89,7 +89,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json",
+        "${workspaceFolder}/test/fixture/package.unknown.test.json",
         "--allowed",
         "MIT",
         "--output",
@@ -106,7 +106,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json",
+        "${workspaceFolder}/test/fixture/package.unknown.test.json",
         "--allowed",
         "MIT",
         "--output",
@@ -124,7 +124,7 @@
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
-        "${workspaceFolder}/test/fixture/test-package.json",
+        "${workspaceFolder}/test/fixture/package.unknown.test.json",
         "--allowed",
         "MIT",
         "--forbidden",
