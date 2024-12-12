@@ -96,6 +96,26 @@ license-report-check --forbidden=ISC --forbidden=BSD-3-Clause
 
 If packages with a 'forbidden' license appear in the input list, these are reported via the 'forbidden' field of the output.
 
+### Format the output as json
+
+This is the default output format.
+
+```
+  license-report-check
+```
+
+or
+
+```
+  license-report-check --output=json
+```
+
+Example of generated output with cli options ` --allowed=MIT --output=json`:
+
+```
+{"notAllowed":[{"name":"eol","link":"git+https://github.com/ryanve/eol.git","remoteVersion":"0.10.0","installedVersion":"0.10.0","definedVersion":"^0.10.0","author":"Ryan Van Etten"},{"name":"semver","licenseType":"ISC","link":"git+https://github.com/npm/node-semver.git","remoteVersion":"7.6.3","installedVersion":"7.6.3","definedVersion":"^7.6.3","author":"GitHub Inc."},{"name":"commit-and-tag-version","licenseType":"ISC","link":"git+https://github.com/absolute-version/commit-and-tag-version.git","remoteVersion":"12.5.0","installedVersion":"12.5.0","definedVersion":"^12.5.0","author":"Ben Coe <ben@npmjs.com>"},{"name":"eslint-plugin-jsdoc","licenseType":"BSD-3-Clause","link":"git+https://github.com/gajus/eslint-plugin-jsdoc.git","remoteVersion":"50.6.0","installedVersion":"50.6.0","definedVersion":"^50.6.0","author":"Gajus Kuizinas gajus@gajus.com http://gajus.com"},{"name":"eslint-plugin-security","licenseType":"Apache-2.0","link":"git+https://github.com/eslint-community/eslint-plugin-security.git","remoteVersion":"3.0.1","installedVersion":"3.0.1","definedVersion":"^3.0.1","author":"Node Security Project"},{"name":"eslint-plugin-security-node","licenseType":"ISC","link":"git+https://github.com/gkouziik/eslint-plugin-security-node.git","remoteVersion":"1.1.4","installedVersion":"1.1.4","definedVersion":"^1.1.4","author":"gkouziik"}],"forbidden":[],"unknown":[{"name":"eol","link":"git+https://github.com/ryanve/eol.git","remoteVersion":"0.10.0","installedVersion":"0.10.0","definedVersion":"^0.10.0","author":"Ryan Van Etten"}]}
+```
+
 ### Format the output as csv
 
 ```
@@ -114,6 +134,38 @@ Change the delimiter used in the csv output (defaults to ','):
 
 ```
   license-report-check --delimiter="|"
+```
+
+Example of generated output with cli options ` --allowed=MIT --output=csv`:
+
+```
+eol,,not allowed
+semver,ISC,not allowed
+commit-and-tag-version,ISC,not allowed
+eslint-plugin-jsdoc,BSD-3-Clause,not allowed
+eslint-plugin-security,Apache-2.0,not allowed
+eslint-plugin-security-node,ISC,not allowed
+eol,,unknown
+```
+
+### Format the output as table
+
+```
+  license-report-check --output=table
+```
+
+Example of generated output with cli options ` --allowed=MIT --output=table`:
+
+```
+name                         licenseType   classification
+---------------------------  ------------  --------------
+eol                                        not allowed
+semver                       ISC           not allowed
+commit-and-tag-version       ISC           not allowed
+eslint-plugin-jsdoc          BSD-3-Clause  not allowed
+eslint-plugin-security       Apache-2.0    not allowed
+eslint-plugin-security-node  ISC           not allowed
+eol                                        unknown
 ```
 
 ### Use a custom (partial) config file
