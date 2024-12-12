@@ -54,7 +54,7 @@ npx license-report > licenses.json
 npx license-report-check --source ./licenses.json --allowed 'MIT'  --allowed 'Apache-2.0'
 ```
 
-## Cli parameter
+## Cli parameters
 
 ### Pipe output of license-report:
 
@@ -184,6 +184,16 @@ If multiple 'allowed' or 'forbidden' arguments are needed, the best way is to us
   ]
 }
 ```
+
+## Required input fields
+
+The following fields must be part of the input data (generated with `license-report`):
+| fieldname | data source |
+|---|---|
+| name | name of the package |
+| licenseType | type of the license of the package (e.g. MIT) |
+
+Additional fields can be used in the output from `license-report-check` using the `outputColumns` property of a (partial) config file (see section on Cli parameters).
 
 ## Notes on used dependencies
 
