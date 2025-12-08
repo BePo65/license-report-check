@@ -35,6 +35,7 @@ export default [
       // HACK as it throws 'security-node': pluginSecurityNode,
     },
     rules: {
+      'jsdoc/reject-function-type': 'off',
       'mocha/no-mocha-arrows': 'off',
       'security/detect-non-literal-fs-filename': 'off',
       'preferArrow/prefer-arrow-functions': [
