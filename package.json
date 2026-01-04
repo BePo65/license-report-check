@@ -7,9 +7,6 @@
     "license-report-check": "./index.js"
   },
   "type": "module",
-  "engines": {
-    "node": ">=18"
-  },
   "files": [
     "index.js",
     "lib/",
@@ -63,6 +60,9 @@
     "prettier": "^3.7.4",
     "sinon": "^21.0.1",
     "streamtest": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
