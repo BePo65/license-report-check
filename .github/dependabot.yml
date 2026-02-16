@@ -8,3 +8,5 @@ updates:
     ignore:
       - dependency-name: 'eslint'
         versions: ['10.x']
+      - dependency-name: '@eslint/js'
+        versions: ['10.x']
