@@ -9,8 +9,8 @@ import { getFormatter } from './lib/formatter.js';
 import { helpText } from './lib/util.js';
 import {
   CheckLicenseTypeTransform,
-  FormatterWritable,
   createJsonReadable,
+  FormatterWritable,
 } from './lib/util-stream.js';
 
 (async () => {
@@ -31,6 +31,6 @@ import {
     );
   } catch (e) {
     console.error(e.message);
-    process.exit(1); // eslint-disable-line n/no-process-exit
+    process.exit(1);
   }
 })();

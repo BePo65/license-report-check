@@ -8,9 +8,7 @@ const execAsPromise = util.promisify(cp.exec);
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-const scriptPath = path
-  .resolve(__dirname, '..', 'index.js')
-  .replace(/(\s+)/g, '\\$1');
+const scriptPath = path.resolve(__dirname, '..', 'index.js').replace(/(\s+)/g, '\\$1');
 
 // test data for e2e tests
 const packageOkJsonPath = path
@@ -27,9 +25,7 @@ describe('end to end test', () => {
 
     it('produces a json report', async () => {
       try {
-        await execAsPromise(
-          `node ${scriptPath} --source=${packageUnknownJsonPath}`,
-        );
+        await execAsPromise(`node ${scriptPath} --source=${packageUnknownJsonPath}`);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -55,9 +51,7 @@ describe('end to end test', () => {
         await execAsPromise(`node ${scriptPath} --source=${packageOkJsonPath}`);
       } catch (err) {
         const result = JSON.parse(err.stdout);
-        const expectedJsonResult = JSON.parse(
-          '{"notAllowed":[],"forbidden":[],"unknown":[]}',
-        );
+        const expectedJsonResult = JSON.parse('{"notAllowed":[],"forbidden":[],"unknown":[]}');
 
         assert.deepStrictEqual(result, expectedJsonResult);
         assert.strictEqual(err.stderr, '', 'expected no warnings');
@@ -68,9 +62,7 @@ describe('end to end test', () => {
     it('2 - not allowed licenses', async () => {
       try {
         // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(
-          `node ${scriptPath} --source=${packageOkJsonPath} --allowed=MIT`,
-        );
+        await execAsPromise(`node ${scriptPath} --source=${packageOkJsonPath} --allowed=MIT`);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -106,9 +98,7 @@ describe('end to end test', () => {
     it('8 - unknown licenses', async () => {
       try {
         // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(
-          `node ${scriptPath} --source=${packageUnknownJsonPath}`,
-        );
+        await execAsPromise(`node ${scriptPath} --source=${packageUnknownJsonPath}`);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable

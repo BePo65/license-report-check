@@ -1,7 +1,7 @@
 import assert from 'node:assert';
-import process from 'node:process';
 import fs from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import process from 'node:process';
 import { pipeline } from 'node:stream/promises';
 
 import { stub } from 'sinon';
@@ -58,12 +58,7 @@ describe('util-stream ', () => {
 
     before(async () => {
       sourceData = JSON.parse(
-        await readFile(
-          new URL(
-            '../fixture/package.unknown.test.json',
-            `${import.meta.url}/test`,
-          ),
-        ),
+        await readFile(new URL('../fixture/package.unknown.test.json', `${import.meta.url}/test`)),
       ).map((element, index) => {
         return { key: index.toString(), value: element };
       });
@@ -131,10 +126,7 @@ describe('util-stream ', () => {
       await resultPromise;
 
       assert(consoleStub.calledOnce);
-      assert.deepStrictEqual(
-        consoleStub.firstCall.firstArg,
-        EXPECTED_RESULT_CSV_FORMATTER,
-      );
+      assert.deepStrictEqual(consoleStub.firstCall.firstArg, EXPECTED_RESULT_CSV_FORMATTER);
 
       consoleStub.restore();
     });
@@ -154,10 +146,7 @@ describe('util-stream ', () => {
       await resultPromise;
 
       assert(consoleStub.calledOnce);
-      assert.deepStrictEqual(
-        consoleStub.firstCall.firstArg,
-        EXPECTED_RESULT_TABLE_FORMATTER,
-      );
+      assert.deepStrictEqual(consoleStub.firstCall.firstArg, EXPECTED_RESULT_TABLE_FORMATTER);
 
       consoleStub.restore();
     });

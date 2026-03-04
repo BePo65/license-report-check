@@ -9,51 +9,30 @@
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-        "--timeout",
-        "999999",
-        "--colors",
-        "${workspaceFolder}/test",
-      ],
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ]
+      "args": ["--timeout", "999999", "--colors", "${workspaceFolder}/test"],
+      "skipFiles": ["<node_internals>/**/*.js"]
     },
     {
       "name": "Mocha Current File",
       "type": "node",
       "request": "launch",
       "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
-      "args": [
-          "--timeout",
-          "999999",
-          "--colors",
-          "${file}"
-      ],
-      "skipFiles": [
-          "<node_internals>/**/*.js"
-      ]
+      "args": ["--timeout", "999999", "--colors", "${file}"],
+      "skipFiles": ["<node_internals>/**/*.js"]
     },
     {
       "name": "Launch Program",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
-      "args": [
-        "--source",
-        "${workspaceFolder}/test/fixture/package.unknown.test.json"
-      ]
+      "args": ["--source", "${workspaceFolder}/test/fixture/package.unknown.test.json"]
     },
     {
       "name": "Launch Program 2",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
@@ -66,9 +45,7 @@
       "name": "Launch Program 3",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
@@ -83,9 +60,7 @@
       "name": "Launch Program 4",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
@@ -100,9 +75,7 @@
       "name": "Launch Program 5",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",
@@ -118,9 +91,7 @@
       "name": "Launch Program 6",
       "type": "node",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**/*.js"
-      ],
+      "skipFiles": ["<node_internals>/**/*.js"],
       "program": "${workspaceFolder}\\index.js",
       "args": [
         "--source",

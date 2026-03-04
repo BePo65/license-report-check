@@ -1,9 +1,7 @@
 {
   "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "cSpell.words": [
-    "streamtest"
-  ],
+  "cSpell.words": ["streamtest"],
   "cSpell.ignorePaths": [
     "package-lock.json",
     "node_modules",

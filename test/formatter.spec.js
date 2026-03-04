@@ -40,8 +40,7 @@ describe('getFormatter', () => {
       testConfig.csvHeaders = true;
       const csvFormatter = getFormatter('csv');
       const csvResult = csvFormatter(testData, testConfig);
-      const csvExpectedResult =
-        EXPECTED_CSV_HEADER + '\n' + EXPECTED_CSV_RESULT;
+      const csvExpectedResult = `${EXPECTED_CSV_HEADER}\n${EXPECTED_CSV_RESULT}`;
 
       assert.strictEqual(csvResult, csvExpectedResult);
     });
