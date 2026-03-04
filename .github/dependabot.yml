@@ -1,12 +1,7 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: '/'
+    directory: "/"
     schedule:
       interval: monthly
     open-pull-requests-limit: 10
-    ignore:
-      - dependency-name: 'eslint'
-        versions: ['10.x']
-      - dependency-name: '@eslint/js'
-        versions: ['10.x']
