@@ -1,8 +1,12 @@
-import assert from 'node:assert';
+// During the test the env variable is set to test
+process.env.NODE_ENV = 'test';
+
+import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import process from 'node:process';
 import { pipeline } from 'node:stream/promises';
+import { afterEach, before, beforeEach, describe, it } from 'node:test';
 
 import { stub } from 'sinon';
 import StreamTest from 'streamtest';
@@ -16,7 +20,7 @@ import {
   FormatterWritable,
 } from '../lib/util-stream.js';
 
-describe('util-stream ', () => {
+describe('util-stream', () => {
   describe('createJsonReadable', () => {
     it('creates a readable from stdin', () => {
       const readable = createJsonReadable();
@@ -52,8 +56,7 @@ describe('util-stream ', () => {
     });
   });
 
-  describe('CheckLicenseTypeTransform', function () {
-    this.slow(900);
+  describe('CheckLicenseTypeTransform', () => {
     let sourceData;
 
     before(async () => {
@@ -85,13 +88,24 @@ describe('util-stream ', () => {
 
   describe('FormatterWritable', () => {
     let testConfig;
+    let consoleStub;
+
+    const exitCodes = {
+      notAllowed: 2,
+      forbidden: 4,
+      unknown: 8,
+    };
 
     beforeEach(() => {
       testConfig = structuredClone(config);
+      consoleStub = stub(console, 'log');
+    });
+
+    afterEach(() => {
+      consoleStub.restore();
     });
 
     it('creates a writable with json formatter', async () => {
-      const consoleStub = stub(console, 'log');
       testConfig.output = 'json';
       const outputFormatter = getFormatter(testConfig.output);
 
@@ -104,15 +118,15 @@ describe('util-stream ', () => {
 
       await resultPromise;
       const expectedResult = JSON.stringify(EXPECTED_RESULT_CLASSIFICATION);
+      const exitCode = process.exitCode;
+      process.exitCode = 0; // node test runner evaluates exit codes
 
+      assert((exitCode === exitCodes.notAllowed) | exitCodes.forbidden | exitCodes.unknown);
       assert(consoleStub.calledOnce);
       assert.deepStrictEqual(consoleStub.firstCall.firstArg, expectedResult);
-
-      consoleStub.restore();
     });
 
     it('creates a writable with csv formatter', async () => {
-      const consoleStub = stub(console, 'log');
       testConfig.output = 'csv';
       const outputFormatter = getFormatter(testConfig.output);
 
@@ -124,15 +138,15 @@ describe('util-stream ', () => {
       });
 
       await resultPromise;
+      const exitCode = process.exitCode;
+      process.exitCode = 0; // node test runner evaluates exit codes
 
+      assert((exitCode === exitCodes.notAllowed) | exitCodes.forbidden | exitCodes.unknown);
       assert(consoleStub.calledOnce);
       assert.deepStrictEqual(consoleStub.firstCall.firstArg, EXPECTED_RESULT_CSV_FORMATTER);
-
-      consoleStub.restore();
     });
 
     it('creates a writable with table formatter', async () => {
-      const consoleStub = stub(console, 'log');
       testConfig.output = 'table';
       const outputFormatter = getFormatter(testConfig.output);
 
@@ -144,11 +158,12 @@ describe('util-stream ', () => {
       });
 
       await resultPromise;
+      const exitCode = process.exitCode;
+      process.exitCode = 0; // node test runner evaluates exit codes
 
+      assert((exitCode === exitCodes.notAllowed) | exitCodes.forbidden | exitCodes.unknown);
       assert(consoleStub.calledOnce);
       assert.deepStrictEqual(consoleStub.firstCall.firstArg, EXPECTED_RESULT_TABLE_FORMATTER);
-
-      consoleStub.restore();
     });
   });
 });

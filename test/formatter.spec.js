@@ -1,4 +1,8 @@
+// During the test the env variable is set to test
+process.env.NODE_ENV = 'test';
+
 import assert from 'node:assert';
+import { beforeEach, describe, it } from 'node:test';
 
 import { stub } from 'sinon';
 

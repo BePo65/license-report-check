@@ -1,6 +1,10 @@
-import assert from 'node:assert';
+// During the test the env variable is set to test
+process.env.NODE_ENV = 'test';
+
+import assert from 'node:assert/strict';
 import cp from 'node:child_process';
 import path from 'node:path';
+import { describe, it } from 'node:test';
 import url from 'node:url';
 import util from 'node:util';
 
@@ -19,10 +23,9 @@ const packageUnknownJsonPath = path
   .replace(/(\s+)/g, '\\$1');
 
 describe('end to end test', () => {
-  describe('with default values', function () {
-    this.timeout(60000);
-    this.slow(5000);
-
+  describe('with default values', {
+    timeout: 60000,
+  }, () => {
     it('produces a json report', async () => {
       try {
         await execAsPromise(`node ${scriptPath} --source=${packageUnknownJsonPath}`);
@@ -41,10 +44,9 @@ describe('end to end test', () => {
     });
   });
 
-  describe('sets exit code to', function () {
-    this.timeout(60000);
-    this.slow(5000);
-
+  describe('sets exit code to', {
+    timeout: 60000,
+  }, () => {
     it('0 - no errors', async () => {
       try {
         // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474

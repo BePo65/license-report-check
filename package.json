@@ -20,7 +20,7 @@
   "scripts": {
     "lint": "pnpm exec biome check .",
     "lint:fix": "pnpm exec biome check --write .",
-    "test": "npx mocha -R spec",
+    "test": "node --test --test-reporter=spec",
     "lint-commits": "commitlint --from e86b01e0b9f467 --to HEAD --verbose",
     "init-changelog": "commit-and-tag-version -i CHANGELOG.md --same-file --prerelease pre --first-release",
     "release": "commit-and-tag-version -i CHANGELOG.md --same-file",
@@ -42,13 +42,11 @@
     "@biomejs/biome": "^2.4.5",
     "@commitlint/cli": "^20.4.3",
     "@commitlint/config-angular": "^20.4.3",
-    "chai": "^6.2.2",
     "commit-and-tag-version": "^12.6.1",
     "eslint-plugin-security": "^3.0.1",
     "globals": "^17.3.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.3.2",
-    "mocha": "^11.7.5",
     "sinon": "^21.0.2",
     "streamtest": "^3.0.1"
   },
