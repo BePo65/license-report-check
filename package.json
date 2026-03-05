@@ -18,8 +18,8 @@
   },
   "bugs": "https://github.com/BePo65/license-report-check/issues",
   "scripts": {
-    "lint": "pnpm exec biome check .",
-    "lint:fix": "pnpm exec biome check --write .",
+    "lint": "npm exec biome check .",
+    "lint:fix": "npm exec biome check --write .",
     "test": "node --test --test-reporter=spec",
     "lint-commits": "commitlint --from e86b01e0b9f467 --to HEAD --verbose",
     "init-changelog": "commit-and-tag-version -i CHANGELOG.md --same-file --prerelease pre --first-release",
