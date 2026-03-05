@@ -195,10 +195,6 @@ The following fields must be part of the input data (generated with `license-rep
 
 Additional fields can be used in the output from `license-report-check` using the `outputColumns` property of a (partial) config file (see section on Cli parameters).
 
-## Notes on used dependencies
-
-`eslint-plugin-security-node` is installed to be informed about updates, but disabled as it throws in 'util-stream.spec.js' line 101 with `TypeError: Cannot read properties of undefined (reading 'loc')`. An [issue #84](https://github.com/gkouziik/eslint-plugin-security-node/issues/84) was opened.
-
 ## Development
 
 This repo uses standard-changelog to create the CHANGELOG. To ensure that the commit messages follow the standard-changelog rules, husky is used for git hooks.

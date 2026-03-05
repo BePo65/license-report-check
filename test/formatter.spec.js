@@ -1,4 +1,8 @@
+// During the test the env variable is set to test
+process.env.NODE_ENV = 'test';
+
 import assert from 'node:assert';
+import { beforeEach, describe, it } from 'node:test';
 
 import { stub } from 'sinon';
 
@@ -40,8 +44,7 @@ describe('getFormatter', () => {
       testConfig.csvHeaders = true;
       const csvFormatter = getFormatter('csv');
       const csvResult = csvFormatter(testData, testConfig);
-      const csvExpectedResult =
-        EXPECTED_CSV_HEADER + '\n' + EXPECTED_CSV_RESULT;
+      const csvExpectedResult = `${EXPECTED_CSV_HEADER}\n${EXPECTED_CSV_RESULT}`;
 
       assert.strictEqual(csvResult, csvExpectedResult);
     });
