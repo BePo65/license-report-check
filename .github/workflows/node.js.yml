@@ -24,6 +24,10 @@ jobs:
         node-version: [20.x, 22.x, 24.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/previous-releases/
 
+    permissions:
+      # Required to checkout the code
+      contents: read
+
     steps:
       - name: Check out
         uses: actions/checkout@v4
