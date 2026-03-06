@@ -2,7 +2,7 @@
 process.env.NODE_ENV = 'test';
 
 import assert from 'node:assert/strict';
-import cp from 'node:child_process';
+import cp, { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import url from 'node:url';
@@ -28,7 +28,7 @@ describe('end to end test', () => {
   }, () => {
     it('produces a json report', async () => {
       try {
-        await execAsPromise(`node ${scriptPath} --source=${packageUnknownJsonPath}`);
+        execFileSync('node', [scriptPath, `--source=${packageUnknownJsonPath}`]);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -38,8 +38,8 @@ describe('end to end test', () => {
         // cSpell:enable
 
         assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 8);
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
+        assert.equal(err.status, 8);
       }
     });
   });
@@ -49,22 +49,19 @@ describe('end to end test', () => {
   }, () => {
     it('0 - no errors', async () => {
       try {
-        // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(`node ${scriptPath} --source=${packageOkJsonPath}`);
-      } catch (err) {
-        const result = JSON.parse(err.stdout);
+        const result = execFileSync('node', [scriptPath, `--source=${packageOkJsonPath}`]);
+        const resultJSON = JSON.parse(result);
         const expectedJsonResult = JSON.parse('{"notAllowed":[],"forbidden":[],"unknown":[]}');
 
-        assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 0);
+        assert.deepStrictEqual(resultJSON, expectedJsonResult);
+      } catch (err) {
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
       }
     });
 
     it('2 - not allowed licenses', async () => {
       try {
-        // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(`node ${scriptPath} --source=${packageOkJsonPath} --allowed=MIT`);
+        execFileSync('node', [scriptPath, `--source=${packageOkJsonPath}`, '--allowed=MIT']);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -74,17 +71,18 @@ describe('end to end test', () => {
         // cSpell:enable
 
         assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 2);
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
+        assert.equal(err.status, 2);
       }
     });
 
     it('4 - forbidden licenses', async () => {
       try {
-        // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(
-          `node ${scriptPath} --source=${packageOkJsonPath} --forbidden=Apache-2.0`,
-        );
+        execFileSync('node', [
+          scriptPath,
+          `--source=${packageOkJsonPath}`,
+          '--forbidden=Apache-2.0',
+        ]);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         const expectedJsonResult = JSON.parse(
@@ -92,15 +90,14 @@ describe('end to end test', () => {
         );
 
         assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 4);
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
+        assert.equal(err.status, 4);
       }
     });
 
     it('8 - unknown licenses', async () => {
       try {
-        // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(`node ${scriptPath} --source=${packageUnknownJsonPath}`);
+        execFileSync('node', [scriptPath, `--source=${packageUnknownJsonPath}`]);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -110,17 +107,19 @@ describe('end to end test', () => {
         // cSpell:enable
 
         assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 8);
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
+        assert.equal(err.status, 8);
       }
     });
 
     it('14 - all result types', async () => {
       try {
-        // Taken from https://github.com/nodejs/node/issues/34234#issuecomment-655504474
-        await execAsPromise(
-          `node ${scriptPath} --source=${packageUnknownJsonPath} --allowed=MIT --forbidden=Apache-2.0`,
-        );
+        execFileSync('node', [
+          scriptPath,
+          `--source=${packageUnknownJsonPath}`,
+          '--allowed=MIT',
+          '--forbidden=Apache-2.0',
+        ]);
       } catch (err) {
         const result = JSON.parse(err.stdout);
         // cSpell:disable
@@ -130,8 +129,8 @@ describe('end to end test', () => {
         // cSpell:enable
 
         assert.deepStrictEqual(result, expectedJsonResult);
-        assert.strictEqual(err.stderr, '', 'expected no warnings');
-        assert.equal(err.code, 14);
+        assert.strictEqual(err.stderr.toString(), '', 'expected no warnings');
+        assert.equal(err.status, 14);
       }
     });
   });
