@@ -2,13 +2,10 @@
 process.env.NODE_ENV = 'test';
 
 import assert from 'node:assert/strict';
-import cp, { execFileSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import url from 'node:url';
-import util from 'node:util';
-
-const execAsPromise = util.promisify(cp.exec);
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
