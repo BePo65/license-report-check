@@ -4,9 +4,11 @@ process.env.NODE_ENV = 'test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import process from 'node:process';
 import { pipeline } from 'node:stream/promises';
 import { afterEach, before, beforeEach, describe, it } from 'node:test';
+import url from 'node:url';
 
 import { stub } from 'sinon';
 import StreamTest from 'streamtest';
@@ -19,6 +21,12 @@ import {
   createJsonReadable,
   FormatterWritable,
 } from '../lib/util-stream.js';
+
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
+const packageShortJsonPath = path
+  .resolve(__dirname, 'fixture', 'package.short.test.json')
+  .replace(/(\s+)/g, '\\$1');
 
 describe('util-stream', () => {
   describe('createJsonReadable', () => {
@@ -35,6 +43,17 @@ describe('util-stream', () => {
       assert(createReadStreamStub.calledOnce);
 
       createReadStreamStub.restore();
+    });
+
+    it('reads a json file', async () => {
+      const expectedReadResult = fs.readFileSync(packageShortJsonPath, 'utf8');
+      const [outputStream, resultPromise] = StreamTest.toText();
+
+      await pipeline(createJsonReadable(packageShortJsonPath), outputStream);
+      const result = await resultPromise;
+
+      assert.equal(result.length, 529);
+      assert.deepStrictEqual(result, expectedReadResult);
     });
 
     it('throw when creating a readable from a non existing file', () => {
