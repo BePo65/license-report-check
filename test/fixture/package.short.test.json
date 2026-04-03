@@ -1,0 +1,20 @@
+[
+  {
+    "name": "@kessler/tableify",
+    "licenseType": "MIT",
+    "link": "git+https://github.com/kessler/node-tableify.git",
+    "remoteVersion": "1.0.2",
+    "installedVersion": "1.0.2",
+    "definedVersion": "^1.0.2",
+    "author": "Dan VerWeire, Yaniv Kessler"
+  },
+  {
+    "name": "debug",
+    "licenseType": "MIT",
+    "link": "git://github.com/debug-js/debug.git",
+    "remoteVersion": "4.3.7",
+    "installedVersion": "4.3.7",
+    "definedVersion": "^4.3.7",
+    "author": "Josh Junon (https://github.com/qix-)"
+  }
+]
