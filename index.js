@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 import { pipeline } from 'node:stream/promises';
-import parser from 'stream-json';
-import StreamArray from 'stream-json/streamers/StreamArray.js';
-
+import { parser } from 'stream-json';
+import { streamArray } from 'stream-json/streamers/stream-array.js';
 import config from './lib/config.js';
 import { getFormatter } from './lib/formatter.js';
 import { helpText } from './lib/util.js';
@@ -24,8 +23,8 @@ import {
   try {
     await pipeline(
       createJsonReadable(config.source),
-      parser(),
-      StreamArray.streamArray(),
+      parser.asStream(),
+      streamArray.asStream(),
       new CheckLicenseTypeTransform(config.allowed, config.forbidden),
       new FormatterWritable(outputFormatter, config),
     );
