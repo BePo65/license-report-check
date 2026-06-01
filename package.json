@@ -48,7 +48,7 @@
     "globals": "^17.4.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "sinon": "^21.1.2",
+    "sinon": "^22.0.0",
     "streamtest": "^4.0.0"
   },
   "engines": {
