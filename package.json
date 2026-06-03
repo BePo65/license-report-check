@@ -47,7 +47,7 @@
     "eslint-plugin-security": "^4.0.0",
     "globals": "^17.4.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.0.5",
     "sinon": "^22.0.0",
     "streamtest": "^4.0.0"
   },
