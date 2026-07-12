@@ -1,6 +1,6 @@
 {
   "name": "license-report-check",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Validate the types of the licenses of the dependencies of a project",
   "main": "index.js",
   "bin": {
