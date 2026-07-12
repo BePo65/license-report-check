@@ -36,18 +36,17 @@
   "dependencies": {
     "easy-table": "^1.2.0",
     "rc": "^1.2.8",
-    "stream-json": "^3.1.0"
+    "stream-json": "^3.4.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.10",
-    "@commitlint/cli": "^21.0.1",
-    "@commitlint/config-angular": "^21.0.1",
-    "commit-and-tag-version": "^12.7.1",
-    "conventional-commits-filter": "^5.0.0",
-    "eslint-plugin-security": "^4.0.0",
-    "globals": "^17.4.0",
+    "@biomejs/biome": "^2.5.2",
+    "@commitlint/cli": "^21.2.0",
+    "@commitlint/config-angular": "^21.2.0",
+    "commit-and-tag-version": "^12.7.3",
+    "eslint-plugin-security": "^4.0.1",
+    "globals": "^17.7.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.5",
+    "lint-staged": "^17.0.8",
     "sinon": "^22.0.0",
     "streamtest": "^4.0.0"
   },
