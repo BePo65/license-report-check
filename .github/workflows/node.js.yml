@@ -21,7 +21,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [24.x, 25.x]
+        node-version: [24.x, 26.x]
         # StreamTest requires node >= 24
         # See supported Node.js release schedule at https://nodejs.org/en/about/previous-releases/
 
@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Check out
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
