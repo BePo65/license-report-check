@@ -18,8 +18,8 @@
   },
   "bugs": "https://github.com/BePo65/license-report-check/issues",
   "scripts": {
-    "lint": "npm exec biome check .",
-    "lint:fix": "npm exec biome check --write .",
+    "lint": "npx biome check .",
+    "lint:fix": "npx biome check --write .",
     "test": "node --test --test-reporter=spec",
     "lint-commits": "commitlint --from e86b01e0b9f467 --to HEAD --verbose",
     "init-changelog": "commit-and-tag-version -i CHANGELOG.md --same-file --prerelease pre --first-release",
@@ -36,15 +36,15 @@
   "dependencies": {
     "easy-table": "^1.2.0",
     "rc": "^1.2.8",
-    "stream-json": "^3.7.0"
+    "stream-json": "^3.8.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
-    "@commitlint/cli": "^21.2.3",
-    "@commitlint/config-angular": "^21.2.3",
-    "commit-and-tag-version": "^13.2.1",
-    "eslint-plugin-security": "^4.2.0",
-    "globals": "^17.13.0",
+    "@biomejs/biome": "^2.6.6",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-angular": "^21.2.4",
+    "commit-and-tag-version": "^13.3.0",
+    "eslint-plugin-security": "^4.2.1",
+    "globals": "^17.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
     "sinon": "^22.1.0",
