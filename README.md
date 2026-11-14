@@ -188,9 +188,10 @@ If multiple 'allowed' or 'forbidden' arguments are needed, the best way is to us
 ## Required input fields
 
 The following fields must be part of the input data (generated with `license-report`):
-| fieldname | data source |
-|---|---|
-| name | name of the package |
+
+| fieldname   | data source                                   |
+| ----------- | --------------------------------------------- |
+| name        | name of the package                           |
 | licenseType | type of the license of the package (e.g. MIT) |
 
 Additional fields can be used in the output from `license-report-check` using the `outputColumns` property of a (partial) config file (see section on Cli parameters).
